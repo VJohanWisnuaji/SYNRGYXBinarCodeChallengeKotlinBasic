@@ -1,20 +1,20 @@
 class TransaksiMember(var nama: String) {
-    
+
     fun transaksi() {
         println("-----------------------------")
         println("Checkout Pelanggan Member ${nama}")
         println("-----------------------------")
         print("Input Nama Barang: ")
         val inputBarang = readLine()!!
-        println("Input Harga Satuan Barang: ${Barang.listBarang.get(inputBarang)}")
+        println("Input Harga Satuan Barang: Rp. ${Barang.listBarang.get(inputBarang)}")
         print("Input Jumlah Barang: ")
         val inputJumlah = readLine()!!.toInt()
         println("-----------------------------")
-        Barang.listTransaksi.put(inputBarang, inputJumlah)
-        var totalItem: Int = Barang.listBarang.get(inputBarang)!! * inputJumlah
+        Barang.jumlahPerItem.put(inputBarang, inputJumlah)
+        val totalItem: Int = Barang.listBarang.get(inputBarang)!! * inputJumlah
         Barang.listTotalItem.put(inputBarang, totalItem)
         Barang.banyakItem.add(inputBarang)
-        
+
         val ya = 'Y'
         val tidak = 'T'
 
@@ -35,18 +35,20 @@ class TransaksiMember(var nama: String) {
                 }
             }
         }
-
-//
-//        println(Barang.listTransaksi)
-//        println(Barang.listTotalItem)
-
+        end()
     }
 
-    fun checkout(){
+    fun checkout() {
         println("-----------------------------")
         println("Checkout Pelanggan Member ${nama}")
         println("-----------------------------")
-        
-        Barang.banyakItem.forEachIndexed { index, s ->  }
+
+        Barang.banyakItem.forEachIndexed { index, item ->
+            println("${index + 1}. $item x ${Barang.jumlahPerItem.get(item)} : Rp. ${Barang.listTotalItem.get(item)}  ")
+            Barang.totalHarga += Barang.listTotalItem.get(item)!!
+        }
+        println("-----------------------------")
+        println("Total Belanja : Rp. ${Barang.totalHarga}")
+        PembayaranAkhir(nama).cekDiskon()
     }
 }

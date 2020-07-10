@@ -83,7 +83,7 @@ fun checkoutPelanggan() {
             checkoutPelangganMember()
         }
         "2" -> {
-
+            TransaksiNonMember().transaksi()
         }
         else -> {
             println("Pilihan tidak ada silahkan kembali lagi")
@@ -99,12 +99,12 @@ fun checkoutPelangganMember() {
     print("Input Nama Member: ")
     val input1 = readLine()!!
 
-    var memberList = Member().namaMember
+    val memberList = Member().namaMember
 
-    if (memberList.indexOf(input1) < 0){
+    if (memberList.indexOf(input1) < 0) {
         println("Member tidak terdaftar silahkan pilih kembali")
         checkoutPelanggan()
-    } else{
+    } else {
         TransaksiMember(input1).transaksi()
     }
 
