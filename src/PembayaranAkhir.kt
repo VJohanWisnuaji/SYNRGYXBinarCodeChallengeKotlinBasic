@@ -44,7 +44,10 @@ class PembayaranAkhir(var nama: String = "") {
             val uangCostumer = readLine()!!.toInt()
             println("-----------------------------")
             val kembalian = uangCostumer % Barang.totalHarga
-            if (kembalian == 0) {
+            if (uangCostumer < Barang.totalHarga) {
+                println("Uang Kurang")
+                pembayaranAkhir()
+            } else  if (kembalian == 0) {
                 println("-TERIMA KASIH-")
             } else {
                 println("-----------------------------")
