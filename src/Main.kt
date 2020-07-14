@@ -99,7 +99,7 @@ fun checkoutPelangganMember() {
     print("Input Nama Member: ")
     val input1 = readLine()!!
 
-    val memberList = Member().namaMember
+    val memberList = Customer().namaMember
 
     if (memberList.indexOf(input1) < 0) {
         println("Member tidak terdaftar silahkan pilih kembali")
@@ -108,4 +108,8 @@ fun checkoutPelangganMember() {
         TransaksiMember(input1).transaksi()
     }
 
+}
+
+fun Int.IDR():String {
+    return ("Rp. $this,00")
 }

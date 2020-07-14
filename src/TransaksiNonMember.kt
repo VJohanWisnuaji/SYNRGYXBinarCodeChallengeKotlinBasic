@@ -9,7 +9,7 @@ class TransaksiNonMember {
             println("-----------------------------")
             print("Input Nama Barang: ")
             val inputBarang = readLine()!!
-            println("Input Harga Satuan Barang: Rp. ${Barang.listBarang.get(inputBarang)}")
+            println("Input Harga Satuan Barang: ${Barang.listBarang.get(inputBarang)?.IDR()}")
             print("Input Jumlah Barang: ")
             val inputJumlah = readLine()!!.toInt()
             println("-----------------------------")
@@ -54,12 +54,13 @@ class TransaksiNonMember {
 
     fun checkout() {
         println("-----------------------------")
-        println("Checkout Pelanggan Member Non Member")
+        println("Checkout Pelanggan Non Member")
         println("-----------------------------")
-
-        Barang.banyakItem.forEachIndexed { index, item ->
-            println("${index + 1}. $item x ${Barang.jumlahPerItem.get(item)} : Rp. ${Barang.listTotalItem.get(item)}  ")
+        var urutan = 1
+        for (item in Barang.banyakItem){
+            println("${urutan}. $item x ${Barang.jumlahPerItem.get(item)} : ${Barang.listTotalItem.get(item)?.IDR()}  ")
             Barang.totalHarga += Barang.listTotalItem.get(item)!!
+            urutan++
         }
         println("-----------------------------")
         println("Total Belanja : Rp. ${Barang.totalHarga}")

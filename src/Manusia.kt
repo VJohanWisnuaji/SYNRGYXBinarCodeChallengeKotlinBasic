@@ -1,3 +1,3 @@
-interface Manusia {
-    var nama: String
+abstract class Manusia {
+    abstract internal var nama: String
 }
