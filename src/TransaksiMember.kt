@@ -1,6 +1,8 @@
 import java.lang.NumberFormatException
 
 class TransaksiMember(var nama: String) {
+    protected val ya: Char = 'Y'
+    protected val tidak: Char = 'T'
 
     fun transaksi() {
         try {
@@ -18,8 +20,6 @@ class TransaksiMember(var nama: String) {
             Barang.listTotalItem.put(inputBarang, totalItem)
             Barang.banyakItem.add(inputBarang)
 
-            val ya:Char = 'Y'
-            val tidak:Char = 'T'
 
             fun end() {
                 println("Input Barang Lagi? $ya/$tidak :")
@@ -39,13 +39,13 @@ class TransaksiMember(var nama: String) {
                 }
             }
 
-                end()
+            end()
         } catch (e: KotlinNullPointerException) {
             println("Barang tidak terdaftar dalam katalog silahkan masukkan kembali")
             println("")
             println("")
             transaksi()
-        } catch (e: NumberFormatException){
+        } catch (e: NumberFormatException) {
             println("Inputan jumlah salah ulangi kembali")
             println("")
             println("")
@@ -58,7 +58,7 @@ class TransaksiMember(var nama: String) {
         println("Checkout Pelanggan Member ${nama}")
         println("-----------------------------")
         var urutan = 1
-        for (item in Barang.banyakItem){
+        for (item in Barang.banyakItem) {
             println("${urutan}. $item x ${Barang.jumlahPerItem.get(item)} : ${Barang.listTotalItem.get(item)?.IDR()}  ")
             Barang.totalHarga += Barang.listTotalItem.get(item)!!
             urutan++
